@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node index.js"
   },
+  "bin": {
+    "express-notify-telegram": "./bin/which"
+  },
   "keywords": [
     "telegram",
     "express",
@@ -19,7 +22,9 @@
     "eslint-plugin-import": "^2.22.1"
   },
   "dependencies": {
-    "on-finished": "^2.3.0"
+    "inquirer": "^7.3.3",
+    "on-finished": "^2.3.0",
+    "ora": "^5.1.0"
   },
   "repository": {
     "type": "git",
