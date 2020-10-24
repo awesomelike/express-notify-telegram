@@ -1,10 +1,13 @@
 {
   "name": "express-notify-telegram",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple Express middleware to notify errors into Telegram",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
+  },
+  "bin": {
+    "express-notify-telegram": "./bin/which"
   },
   "keywords": [
     "telegram",
@@ -19,7 +22,9 @@
     "eslint-plugin-import": "^2.22.1"
   },
   "dependencies": {
-    "on-finished": "^2.3.0"
+    "inquirer": "^7.3.3",
+    "on-finished": "^2.3.0",
+    "ora": "^5.1.0"
   },
   "repository": {
     "type": "git",

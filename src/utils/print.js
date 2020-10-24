@@ -5,4 +5,8 @@ const printWarning = (text) => console.warn(
   '\x1b[0m', text,
 );
 
-module.exports = { printWarning };
+const printError = (text) => console.error(
+  '\x1b[31m', 'Invalid botToken or channel username provided!',
+);
+
+module.exports = { printWarning, printError };
