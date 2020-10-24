@@ -23,7 +23,7 @@ Once your Express application is deployed, it is important to get notified of an
       // Some code that throws error
     } catch(e) {
       // This will fire a notification, as it has an erroneous 500 statusCode.
-      res.status(500).json({ /* whatever */ }); 
+      res.status(500).json(/* whatever */); 
       
       // If you want a custom error message in the notification, add the following:
       req.errorMessage = 'My custom error message';
@@ -31,3 +31,4 @@ Once your Express application is deployed, it is important to get notified of an
   });
 
 ```
+Voila, from now you get an instant notification to your Telegram, and immediately fix that bug :).
