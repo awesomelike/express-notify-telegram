@@ -4,7 +4,7 @@
   "description": "A simple Express middleware to notify errors into Telegram",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [
     "telegram",
@@ -20,5 +20,13 @@
   },
   "dependencies": {
     "on-finished": "^2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awesomelike/express-notify-telegram.git"
+  },
+  "homepage": "https://github.com/awesomelike/express-notify-telegram#readme",
+  "bugs": {
+    "url": "https://github.com/awesomelike/express-notify-telegram/issues"
   }
 }
