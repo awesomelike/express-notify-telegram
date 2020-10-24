@@ -5,6 +5,19 @@ const ora = require('ora');
 const parseChunk = require('./src/utils/parseChunk');
 const { printError } = require('./src/utils/print');
 
+const questions = [
+  {
+    type: 'input',
+    message: 'Enter your botToken:',
+    name: 'botToken',
+  },
+  {
+    type: 'input',
+    message: 'Enter channel\'s username (without @):',
+    name: 'channelUsername',
+  },
+];
+
 const handleAnswers = (answers) => {
   const { botToken, channelUsername } = answers;
   const url = `https://api.telegram.org/bot${botToken}/getChat?chat_id=@${channelUsername}`;
@@ -31,17 +44,6 @@ const handleError = (error) => {
 };
 
 inquirer
-  .prompt([
-    {
-      type: 'input',
-      message: 'Enter your botToken:',
-      name: 'botToken',
-    },
-    {
-      type: 'input',
-      message: 'Enter channel\'s username (without @):',
-      name: 'channelUsername',
-    },
-  ])
+  .prompt(questions)
   .then(handleAnswers)
   .catch(handleError);
