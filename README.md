@@ -4,8 +4,9 @@ Once your Express application is deployed, it is important to get notified of an
 # Setup
 1. Write to [BotFather](https://t.me/botfather), give it a command `/newbot`, answer the questions, and it will give you a secret token (we call this `botToken`).
 2. Create a channel, give it a username, and add the bot you have just created to this channel.
-3. Inside of your project directory, run `npm install --save express-notify-telegram`. Afterwards, run `npx express-notify-telegram`, this CLI will ask you `botToken` and channel's username you created in the previous step and give you the channel's `chatId`.
-4. Finally, in your application, add the following:
+3. Inside of your project directory, run `npm install --save express-notify-telegram`.
+4. Run `npx express-notify-telegram`. This CLI will ask you the `botToken` and channel's username you created in the previous steps and give you the channel's `chatId`.
+5. Finally, in your application, add the following:
 ```js
   const express = require('express');
   const telegramMiddleware = require('express-notify-telegram');
