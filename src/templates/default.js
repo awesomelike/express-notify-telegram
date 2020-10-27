@@ -1,4 +1,5 @@
 const escape = require('../utils/escaper');
+const statusCodeMapper = require('../utils/statusCodeMap');
 
 module.exports = (req, res, options) => {
   const notificationTitle = res.statusCode < 500 ? '⚠️⚠️⚠️ SERVER WARNING ⚠️⚠️⚠️' : '⛔️⛔️⛔️ SERVER ERROR ⛔️⛔️⛔️';
@@ -11,7 +12,7 @@ module.exports = (req, res, options) => {
 *🔺 APPLICATION:* ${escape(appName)}
     
 *🔺 ENDPOINT:* ${endpoint}
-*🔺 STATUS_CODE:* ${res.statusCode}
+*🔺 STATUS_CODE:* ${statusCodeMapper(res.statusCode)}
     
 *🔺 ERROR_MESSAGE:* ${escape(req.errorMessage || 'Unknown')}
     
