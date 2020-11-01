@@ -62,6 +62,7 @@ Defaults to `true`.
 Boolean value. If true, you will get 4xx notifications with sound.
 
 Defaults to `false`.
+
 **Note:** This is ignored if `enable4xx` is `false`.
 #### `enable5xx` (optional)
 Boolean value. If true, you will get notifications for 5xx error codes.
@@ -71,4 +72,5 @@ Defaults to `true`.
 Boolean value. If true, you will get 5xx notifications with sound. 
 
 Defaults to `true`.
+
 **Note:** This is ignored if `enable5xx` is `false`.
