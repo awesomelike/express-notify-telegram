@@ -33,3 +33,42 @@ Once your Express application is deployed, it is important to get notified of an
 
 ```
 Voila, from now you get an instant notification to your Telegram, and immediately fix that bug :).
+
+# API
+```js
+  app.use(expressNotifyTelegram(config, opts));
+```
+### Configuration (`config`) [required]
+
+##### `botToken` (required)
+The secret token (string) you got from [BotFather](https://t.me/botfather).
+
+##### `chatId` (required)
+The number you got from the CLI (use the instructions above).
+
+### Options (`opts`) [optional]
+#### `exclude` (optional)
+An array of `statusCode`s to ignore. 
+Example: `{ exclude: [404, 502] }` skips all notifications for 404 and 502 `statusCode`s.
+
+Defaults to `[]`.
+
+**Note:** This field has the highest priority. Even if you set `enable4xx` or `enable5xx` to `true`, and some values intersect with this array, those `statusCode`s get ignored.
+#### `enable4xx` (optional)
+Boolean value. If true, you will get notifications for 4xx error codes.
+
+Defaults to `true`. 
+#### `sound4xx` (optional)
+Boolean value. If true, you will get 4xx notifications with sound.
+
+Defaults to `false`.
+**Note:** This is ignored if `enable4xx` is `false`.
+#### `enable5xx` (optional)
+Boolean value. If true, you will get notifications for 5xx error codes.
+
+Defaults to `true`. 
+#### `sound5xx` (optional)
+Boolean value. If true, you will get 5xx notifications with sound. 
+
+Defaults to `true`.
+**Note:** This is ignored if `enable5xx` is `false`.
