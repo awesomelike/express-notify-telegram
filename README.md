@@ -9,11 +9,11 @@ Once your Express application is deployed, it is important to get notified of an
 5. Finally, in your application, add the following:
 ```js
   const express = require('express');
-  const telegramMiddleware = require('express-notify-telegram');
+  const telegramLogger = require('express-notify-telegram');
   
   const app = express();
   
-  app.use(telegramMiddleware({
+  app.use(telegramLogger({
      botToken: '<your botToken from above>', 
      chatId: '<the chatId you got from the CLI>'
   }));
