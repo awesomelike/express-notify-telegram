@@ -18,7 +18,10 @@ const { isError, is4xx, is5xx } = require('./src/utils/statusCode');
  * @param {boolean} opts.sound4xx If true enables 4xx status notifications sounds
  * @param {boolean} opts.enable5xx If true enables 5xx status notifications
  * @param {boolean} opts.sound5xx If true enables 5xx status notifications sounds
- * @param {Array} opts.exclude An array of statusCodes to exclude (this has the highest priority) 
+ * @param {Array} opts.exclude An array of statusCodes to exclude (this has the highest priority)
+ * @param {boolean} opts.hideSecrets If true hides secrets
+ * @param {Array} opts.secretWords Array of secret property names to be hidden from the request body
+ * @param {Array} opts.mask The string that is used to replace a secret value
  */
 const telegramMiddleware = (config, opts) => (req, res, next) => {
   if (!config) config = {};
@@ -27,39 +30,37 @@ const telegramMiddleware = (config, opts) => (req, res, next) => {
   if (!botToken) printWarning('botToken not provided, errors get ignored');
   if (!chatId) printWarning('chatId not provided, errors get ignored');
 
-  let options = validateOptions(opts);  
+  const options = validateOptions(opts);
 
-  if (botToken && chatId) {
-    onFinished(res, (err, _) => {
-      if ((is4xx(res) && options.enable4xx) || (is5xx(res) && options.enable5xx)) {
-        if (!options.exclude.includes(res.statusCode)) {
-          if (err || isError(res)) {
-            const text = template(req, res, config);
-    
-            let query = {
-              text,
-              chat_id: chatId,
-              parse_mode: 'Markdown',
-            };
-    
-            // Set sound notification according to the options
-            if ((is4xx(res) && !options.sound4xx) || (is5xx(res) && !options.sound5xx)) {
-              query.disable_notification = true;
-            }
-    
-            query = querify(query);
-    
-            try {
-              sendMessage(botToken, query);
-            } catch (e) {
-              console.log(e);
-              next(e);
-            }
-          }
-        }
+  if (!botToken || !chatId) return;
+  onFinished(res, (err, _) => {
+    if (!(is4xx(res) && options.enable4xx) && !(is5xx(res) && options.enable5xx)) return;
+    if (options.exclude.includes(res.statusCode)) return;
+
+    if (err || isError(res)) {
+      const text = template(req, res, Object.assign(config, options));
+
+      let query = {
+        text,
+        chat_id: chatId,
+        parse_mode: 'Markdown',
+      };
+
+      // Set sound notification according to the options
+      if ((is4xx(res) && !options.sound4xx) || (is5xx(res) && !options.sound5xx)) {
+        query.disable_notification = true;
       }
-    });
-  }
+
+      query = querify(query);
+
+      try {
+        sendMessage(botToken, query);
+      } catch (e) {
+        console.log(e);
+        next(e);
+      }
+    }
+  });
   next();
 };
 

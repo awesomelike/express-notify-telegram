@@ -76,3 +76,13 @@ Boolean value. If true, you will get 5xx notifications with sound.
 Defaults to `true`.
 
 **Note:** This is ignored if `enable5xx` is `false`.
+
+#### `hideSecrets` (optional)
+Boolean value. If true, secret fields such as passwords, secrets and tokens are hidden using a mask.
+
+Defaults to `true`.
+
+#### `secretWords` (optional)
+An array of property names to be hidden with a mask.
+
+Defaults to `['password', 'pass', 'token', 'auth', 'secret', 'passphrase', 'card']` 
