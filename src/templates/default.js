@@ -8,10 +8,12 @@ module.exports = (req, res, options) => {
   const appName = options.appName || process.env.APP_NAME || 'Unknown application';
 
   // Hide secret fields, such as password
-  req.body = options.hideSecrets && req.body ? hideSecrets(req.body, {
+  // eslint-disable-next-line prefer-object-spread
+  let requestBody = req.body && Object.assign({}, req.body);
+  requestBody = options.hideSecrets && requestBody ? hideSecrets(requestBody, {
     secretWords: options.secretWords,
     mask: options.mask,
-  }) : req.body;
+  }) : requestBody;
 
   const message = `
   *${notificationTitle}*
@@ -27,7 +29,7 @@ module.exports = (req, res, options) => {
     
 *🔧 REQUEST_BODY:* 
 \`\`\`
-${JSON.stringify(req.body || {}, null, 2)}
+${JSON.stringify(requestBody || {}, null, 2)}
 \`\`\`
   `;
   return message;
