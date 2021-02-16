@@ -1,6 +1,6 @@
 {
   "name": "express-notify-telegram",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "A simple Express middleware to notify errors into Telegram",
   "main": "index.js",
   "scripts": {
