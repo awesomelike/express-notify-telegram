@@ -1,4 +1,4 @@
-[![HitCount](http://hits.dwyl.com/awesomelike/express-notify-telegram.svg)](http://hits.dwyl.com/awesomelike/express-notify-telegram)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fawesomelike%2Fexpress-notify-telegram&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 # Use case
 Once your Express application is deployed, it is important to get notified of any errors in real-time. While there are many advanced solutions for this task already, this utility middleware focuses on being minimalistic, easy setup and of course the cosy Telegram :). 
